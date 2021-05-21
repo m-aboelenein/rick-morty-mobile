@@ -1,16 +1,18 @@
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
+import {ApolloProvider} from '@apollo/client';
 import NavigationContainer from './src/navigation/navigationContainer';
+import client from './src/apollo/client';
 
 declare const global: {HermesInternal: null | {}};
 
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <StatusBar barStyle="light-content" />
+      <ApolloProvider client={client}>
         <NavigationContainer />
-      </SafeAreaView>
+      </ApolloProvider>
     </>
   );
 };
