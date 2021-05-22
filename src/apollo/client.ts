@@ -1,7 +1,13 @@
-import {ApolloClient, InMemoryCache} from '@apollo/client';
+import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client';
+import fetch from 'cross-fetch';
 import {Character, CharactersData} from '../hooks/useCharacters/types';
 
 const BASE_URL = 'https://rickandmortyapi.com/graphql';
+
+const LINK = createHttpLink({
+  uri: BASE_URL,
+  fetch,
+});
 
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
@@ -29,7 +35,7 @@ const cache: InMemoryCache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: BASE_URL,
+  link: LINK,
   cache,
 });
 
