@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an episode 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "flexDirection": "row",
+      "height": 30,
+      "justifyContent": "space-between",
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "fontSize": 14,
+      }
+    }
+  >
+    pickle Rick
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "black",
+        "fontSize": 14,
+      }
+    }
+  >
+    january 1st 2018
+  </Text>
+</View>
+`;
