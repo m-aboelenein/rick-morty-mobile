@@ -8,6 +8,7 @@ const CharacterSearchBar: React.FC<CharactersSearchBarProps> = (props) => {
   return (
     <View style={charactersSearchBarStyles.container}>
       <TextInput
+        testID="search-bar"
         value={searchValue}
         onChangeText={setSearchValue}
         placeholder="Enter Character Name"
