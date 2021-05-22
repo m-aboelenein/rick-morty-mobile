@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a character header information 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "borderRadius": 16,
+      "flexDirection": "row",
+      "marginVertical": 8,
+      "minHeight": 120,
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 45,
+        "height": 90,
+        "marginRight": 16,
+        "resizeMode": "cover",
+        "width": 90,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "paddingVertical": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        Name:
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        Rick Sanchez
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        Species:
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        human
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        Gender:
+      </Text>
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+          }
+        }
+      >
+        male
+      </Text>
+    </View>
+  </View>
+</View>
+`;
