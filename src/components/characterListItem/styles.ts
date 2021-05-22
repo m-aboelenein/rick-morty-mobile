@@ -3,18 +3,18 @@ import {CharacterListItemStyles} from './types';
 
 const characterListItemStyles = StyleSheet.create<CharacterListItemStyles>({
   container: {
-    minHeight: 60,
+    minHeight: 80,
     backgroundColor: 'white',
     paddingHorizontal: 16,
     alignItems: 'center',
     flexDirection: 'row',
     marginVertical: 8,
-    borderRadius: 16,
+    borderRadius: 20,
   },
   characterImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     resizeMode: 'cover',
     marginRight: 16,
   },
