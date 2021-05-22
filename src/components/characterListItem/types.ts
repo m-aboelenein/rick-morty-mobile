@@ -1,8 +1,9 @@
 import {ImageStyle, TextStyle, ViewStyle} from 'react-native';
-import {Character} from '../../shared/types';
+import {Character} from '../../hooks/useCharacters/types';
 
 export interface CharacterListItemProps {
   character: Character;
+  onPressCharacter: () => void;
 }
 
 export interface CharacterListItemStyles {

@@ -4,9 +4,12 @@ import {CharacterListItemProps} from './types';
 import characterListItemStyles from './styles';
 
 export const CharacterListItem: React.FC<CharacterListItemProps> = (props) => {
-  const {character} = props;
+  const {character, onPressCharacter} = props;
   return (
-    <Pressable key={character.id} style={characterListItemStyles.container}>
+    <Pressable
+      key={character.id}
+      style={characterListItemStyles.container}
+      onPress={onPressCharacter}>
       <Image
         source={{uri: character.image}}
         style={characterListItemStyles.characterImage}
