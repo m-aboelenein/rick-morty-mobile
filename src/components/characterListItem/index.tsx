@@ -7,6 +7,7 @@ export const CharacterListItem: React.FC<CharacterListItemProps> = (props) => {
   const {character, onPressCharacter} = props;
   return (
     <Pressable
+      testID={'character-item'}
       key={character.id}
       style={characterListItemStyles.container}
       onPress={onPressCharacter}>
@@ -20,3 +21,4 @@ export const CharacterListItem: React.FC<CharacterListItemProps> = (props) => {
     </Pressable>
   );
 };
+export default CharacterListItem;

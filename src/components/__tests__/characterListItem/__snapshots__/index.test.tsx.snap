@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a character item 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "borderRadius": 20,
+      "flexDirection": "row",
+      "marginVertical": 8,
+      "minHeight": 80,
+      "paddingHorizontal": 16,
+    }
+  }
+  testID="character-item"
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 35,
+        "height": 70,
+        "marginRight": 16,
+        "resizeMode": "cover",
+        "width": 70,
+      }
+    }
+  />
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "color": "black",
+        "flex": 1,
+        "fontSize": 16,
+      }
+    }
+  >
+    Rick Sanchez
+  </Text>
+</View>
+`;
