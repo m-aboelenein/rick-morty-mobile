@@ -14,12 +14,6 @@ import {Character} from '../../hooks/useCharacters/types';
 import CharacterSearchBar from '../../components/charactersSearchBar';
 import {useNavigation} from '@react-navigation/core';
 
-const renderEmptyList = () => (
-  <View style={styles.screenContainer}>
-    <Text>Sorry no data</Text>
-  </View>
-);
-
 const Characters: React.FC<{}> = () => {
   const {getCharacters, loading, error, data, fetchMore} = useCharacters();
   const {navigate} = useNavigation();
@@ -43,14 +37,33 @@ const Characters: React.FC<{}> = () => {
     return null;
   };
 
+  const onFilterCharacters = useCallback(
+    async (value: string) => {
+      setSearchValue(value);
+      const valueToLowerCase = value.toLowerCase();
+      try {
+        getCharacters({
+          variables: {
+            filter: {
+              name: valueToLowerCase,
+            },
+          },
+        });
+      } catch (err) {
+        Promise.reject(err);
+      }
+    },
+    [getCharacters],
+  );
+
   const renderListHeader = useMemo(
     () => (
       <CharacterSearchBar
         searchValue={searchValue}
-        setSearchValue={setSearchValue}
+        setSearchValue={onFilterCharacters}
       />
     ),
-    [searchValue],
+    [searchValue, onFilterCharacters],
   );
 
   const onEndReachedHandler = useCallback(async () => {
@@ -81,21 +94,27 @@ const Characters: React.FC<{}> = () => {
     />
   );
 
-  if (loading && !data) {
+  const renderEmptyList = () => {
+    if (loading) {
+      return (
+        <SafeAreaView style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="green" />
+        </SafeAreaView>
+      );
+    }
+    if (error) {
+      return (
+        <SafeAreaView style={styles.errorContainer}>
+          <Text style={styles.errorMessage}>Sorry no data</Text>
+        </SafeAreaView>
+      );
+    }
     return (
-      <SafeAreaView style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="green" />
-      </SafeAreaView>
+      <View style={styles.screenContainer}>
+        <Text>Sorry no data</Text>
+      </View>
     );
-  }
-
-  if (error) {
-    return (
-      <SafeAreaView style={styles.screenContainer}>
-        <Text>{error.message}</Text>
-      </SafeAreaView>
-    );
-  }
+  };
 
   return (
     <SafeAreaView style={styles.screenContainer}>

@@ -15,7 +15,9 @@ export interface CharactersQuery {
 
 export interface CharactersQueryVars {
   page?: number;
-  filter?: string;
+  filter?: {
+    name: string;
+  };
 }
 
 export interface Character {

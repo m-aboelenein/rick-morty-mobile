@@ -8,6 +8,17 @@ const charactersStyles = StyleSheet.create<CharactersStyles>({
   },
   listContentStyles: {
     paddingHorizontal: 16,
+    flexGrow: 1,
+  },
+  errorContainer: {
+    flex: 1,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  errorMessage: {
+    color: 'white',
+    fontSize: 16,
   },
   loadingContainer: {
     flex: 1,
