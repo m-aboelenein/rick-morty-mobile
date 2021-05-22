@@ -11,6 +11,7 @@ const charactersStyles = StyleSheet.create<CharactersStyles>({
   },
   loadingContainer: {
     flex: 1,
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
   },

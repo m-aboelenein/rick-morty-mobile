@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {
   ActivityIndicator,
   ListRenderItem,
@@ -11,10 +11,8 @@ import useCharacters from '../../hooks/useCharacters';
 import {FlatList} from 'react-native-gesture-handler';
 import {CharacterListItem} from '../../components/characterListItem';
 import {Character} from '../../hooks/useCharacters/types';
-
-const renderCharacterItem: ListRenderItem<Character> = ({item}) => (
-  <CharacterListItem character={item} />
-);
+import CharacterSearchBar from '../../components/charactersSearchBar';
+import {useNavigation} from '@react-navigation/core';
 
 const renderEmptyList = () => (
   <View style={styles.screenContainer}>
@@ -24,7 +22,9 @@ const renderEmptyList = () => (
 
 const Characters: React.FC<{}> = () => {
   const {getCharacters, loading, error, data, fetchMore} = useCharacters();
+  const {navigate} = useNavigation();
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const nextPage = data?.characters.info.next;
 
@@ -43,6 +43,16 @@ const Characters: React.FC<{}> = () => {
     return null;
   };
 
+  const renderListHeader = useMemo(
+    () => (
+      <CharacterSearchBar
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+    ),
+    [searchValue],
+  );
+
   const onEndReachedHandler = useCallback(async () => {
     if (fetchMore && !isLoadingMore) {
       try {
@@ -60,7 +70,18 @@ const Characters: React.FC<{}> = () => {
     }
   }, [nextPage, fetchMore, isLoadingMore]);
 
-  if (loading) {
+  const onPressCharacter = (itemId: number) => {
+    navigate('characterDerails', {id: itemId});
+  };
+
+  const renderCharacterItem: ListRenderItem<Character> = ({item}) => (
+    <CharacterListItem
+      character={item}
+      onPressCharacter={() => onPressCharacter(item.id)}
+    />
+  );
+
+  if (loading && !data) {
     return (
       <SafeAreaView style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="green" />
@@ -81,13 +102,16 @@ const Characters: React.FC<{}> = () => {
       <FlatList
         data={data?.characters.results}
         renderItem={renderCharacterItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         ListEmptyComponent={renderEmptyList}
         contentContainerStyle={styles.listContentStyles}
+        extraData={searchValue}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         onEndReached={onEndReachedHandler}
         ListFooterComponent={renderListFooter}
+        ListHeaderComponent={renderListHeader}
+        stickyHeaderIndices={[0]}
       />
     </SafeAreaView>
   );
