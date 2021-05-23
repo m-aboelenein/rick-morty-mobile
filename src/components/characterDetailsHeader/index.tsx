@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import characterDetailsHeaderStyles from './styles';
 import {CharacterDetailsHeaderProps} from './types';
 
@@ -9,7 +10,7 @@ const CharacterDetailsHeader: React.FC<CharacterDetailsHeaderProps> = (
   const {character} = props;
   return (
     <View key={character.id} style={characterDetailsHeaderStyles.container}>
-      <Image
+      <FastImage
         source={{uri: character.image}}
         style={characterDetailsHeaderStyles.characterImage}
       />

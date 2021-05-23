@@ -1,7 +1,9 @@
 import React from 'react';
-import {Text, Image, Pressable} from 'react-native';
+import {Text, Pressable} from 'react-native';
 import {CharacterListItemProps} from './types';
 import characterListItemStyles from './styles';
+import FastImage from 'react-native-fast-image'
+
 
 export const CharacterListItem: React.FC<CharacterListItemProps> = (props) => {
   const {character, onPressCharacter} = props;
@@ -11,7 +13,7 @@ export const CharacterListItem: React.FC<CharacterListItemProps> = (props) => {
       key={character.id}
       style={characterListItemStyles.container}
       onPress={onPressCharacter}>
-      <Image
+      <FastImage
         source={{uri: character.image}}
         style={characterListItemStyles.characterImage}
       />
