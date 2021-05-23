@@ -1,7 +1,11 @@
-import {ViewStyle} from 'react-native';
+import {TextStyle, ViewStyle} from 'react-native';
 
 export interface CharacterDetailsStyles {
   screenContainer: ViewStyle;
+  loadingContainer: ViewStyle;
+  listContentStyles: ViewStyle;
+  errorContainer: ViewStyle;
+  errorMessage: TextStyle;
 }
 
 export type CharacterDetailsNavigationParams = {
