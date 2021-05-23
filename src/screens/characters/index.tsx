@@ -1,10 +1,11 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {
   ActivityIndicator,
   ListRenderItem,
   Text,
   View,
   SafeAreaView,
+  Pressable,
 } from 'react-native';
 import styles from './styles';
 import useCharacters from '../../hooks/useCharacters';
@@ -21,6 +22,7 @@ const Characters: React.FC<{}> = () => {
   const [searchValue, setSearchValue] = useState<string>('');
 
   const nextPage = data?.characters.info.next;
+  const canLoadMore = data?.characters.info.next;
 
   useEffect(() => {
     getCharacters();
@@ -67,7 +69,7 @@ const Characters: React.FC<{}> = () => {
   );
 
   const onEndReachedHandler = useCallback(async () => {
-    if (fetchMore && !isLoadingMore) {
+    if (fetchMore && !isLoadingMore && canLoadMore) {
       try {
         setIsLoadingMore(true);
         await fetchMore({
@@ -81,11 +83,14 @@ const Characters: React.FC<{}> = () => {
         setIsLoadingMore(false);
       }
     }
-  }, [nextPage, fetchMore, isLoadingMore]);
+  }, [nextPage, fetchMore, isLoadingMore, canLoadMore]);
 
-  const onPressCharacter = (itemId: number) => {
-    navigate('characterDerails', {id: itemId});
-  };
+  const onPressCharacter = useCallback(
+    (itemId: number) => {
+      navigate('characterDerails', {id: itemId});
+    },
+    [navigate],
+  );
 
   const renderCharacterItem: ListRenderItem<Character> = ({item}) => (
     <CharacterListItem
@@ -94,7 +99,7 @@ const Characters: React.FC<{}> = () => {
     />
   );
 
-  const renderEmptyList = () => {
+  const renderEmptyList = useCallback(() => {
     if (loading) {
       return (
         <SafeAreaView style={styles.loadingContainer}>
@@ -114,20 +119,21 @@ const Characters: React.FC<{}> = () => {
         <Text>Sorry no data</Text>
       </View>
     );
-  };
+  }, [loading, error]);
 
   return (
     <SafeAreaView style={styles.screenContainer}>
       <FlatList
         data={data?.characters.results}
         renderItem={renderCharacterItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item: Character) => item.id.toString()}
         ListEmptyComponent={renderEmptyList}
         contentContainerStyle={styles.listContentStyles}
         extraData={searchValue}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         onEndReached={onEndReachedHandler}
+        onEndReachedThreshold={0.2}
         ListFooterComponent={renderListFooter}
         ListHeaderComponent={renderListHeader}
         stickyHeaderIndices={[0]}
