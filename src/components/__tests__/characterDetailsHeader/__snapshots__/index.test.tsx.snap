@@ -8,28 +8,46 @@ exports[`renders a character header information 1`] = `
       "backgroundColor": "white",
       "borderRadius": 16,
       "flexDirection": "row",
-      "marginVertical": 8,
+      "marginHorizontal": 8,
       "minHeight": 120,
       "paddingHorizontal": 16,
     }
   }
 >
-  <Image
-    source={
-      Object {
-        "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-      }
-    }
+  <View
     style={
-      Object {
-        "borderRadius": 45,
-        "height": 90,
-        "marginRight": 16,
-        "resizeMode": "cover",
-        "width": 90,
-      }
+      Array [
+        Object {
+          "overflow": "hidden",
+        },
+        Object {
+          "borderRadius": 45,
+          "height": 90,
+          "marginRight": 16,
+          "resizeMode": "cover",
+          "width": 90,
+        },
+      ]
     }
-  />
+  >
+    <FastImageView
+      resizeMode="cover"
+      source={
+        Object {
+          "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+        }
+      }
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
   <View
     style={
       Object {

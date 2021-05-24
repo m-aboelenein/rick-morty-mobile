@@ -9,7 +9,7 @@ const characterDetailsHeaderStyles =
       paddingHorizontal: 16,
       alignItems: 'center',
       flexDirection: 'row',
-      marginVertical: 8,
+      marginHorizontal: 8,
       borderRadius: 16,
     },
     characterImage: {
