@@ -13,6 +13,9 @@ const scrollTopButtonStyles = StyleSheet.create<ScrollTopButtonStyles>({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  arrow: {
+    transform: [{rotate: '90deg'}],
+  },
 });
 
 export default scrollTopButtonStyles;

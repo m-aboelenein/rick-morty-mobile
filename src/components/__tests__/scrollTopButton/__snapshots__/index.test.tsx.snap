@@ -31,7 +31,15 @@ exports[`renders a button that scrolls up 1`] = `
   <svg
     data-file-name="SvgChevronLeft"
     height={30}
-    rotation={90}
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "rotate": "90deg",
+          },
+        ],
+      }
+    }
     width={30}
   />
 </View>

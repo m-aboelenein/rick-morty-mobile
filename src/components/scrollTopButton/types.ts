@@ -1,4 +1,4 @@
-import {ViewStyle} from 'react-native';
+import {ImageStyle, ViewStyle} from 'react-native';
 
 export interface ScrollTopButtonProps {
   onPressScroll: () => void;
@@ -6,4 +6,5 @@ export interface ScrollTopButtonProps {
 
 export interface ScrollTopButtonStyles {
   container: ViewStyle;
+  arrow: ImageStyle;
 }

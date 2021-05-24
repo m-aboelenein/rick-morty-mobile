@@ -12,7 +12,7 @@ const ScrollTopButton: React.FC<ScrollTopButtonProps> = (props) => {
       testID="scroll-button"
       onPress={onPressScroll}
       style={scrollTopButtonStyles.container}>
-      <ChevronLeft height={30} width={30} rotation={90} />
+      <ChevronLeft height={30} width={30} style={scrollTopButtonStyles.arrow} />
     </Pressable>
   );
 };
