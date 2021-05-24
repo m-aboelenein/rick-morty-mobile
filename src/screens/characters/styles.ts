@@ -5,6 +5,7 @@ const charactersStyles = StyleSheet.create<CharactersStyles>({
   screenContainer: {
     flex: 1,
     backgroundColor: 'black',
+    paddingTop: 16,
   },
   listContentStyles: {
     paddingHorizontal: 16,

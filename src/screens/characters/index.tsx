@@ -5,7 +5,9 @@ import {
   Text,
   View,
   SafeAreaView,
-  Pressable,
+  Keyboard,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from 'react-native';
 import styles from './styles';
 import useCharacters from '../../hooks/useCharacters';
@@ -14,12 +16,17 @@ import {CharacterListItem} from '../../components/characterListItem';
 import {Character} from '../../hooks/useCharacters/types';
 import CharacterSearchBar from '../../components/charactersSearchBar';
 import {useNavigation} from '@react-navigation/core';
+import ScrollTopButton from '../../components/scrollTopButton';
+
+const MAXIMUM_SCROLLING_OFFSET = 1000;
 
 const Characters: React.FC<{}> = () => {
   const {getCharacters, loading, error, data, fetchMore} = useCharacters();
   const {navigate} = useNavigation();
   const [isLoadingMore, setIsLoadingMore] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
+  const [isScrollTopEnabled, setIsScrollTopEnabled] = useState<boolean>(false);
+  const charactersListRef = useRef<FlatList<any> | null>(null);
 
   const nextPage = data?.characters.info.next;
   const canLoadMore = data?.characters.info.next;
@@ -57,6 +64,18 @@ const Characters: React.FC<{}> = () => {
     },
     [getCharacters],
   );
+
+  const handleOnUserScrollList = (
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) => {
+    let scrollOffset = event.nativeEvent.contentOffset.y;
+    if (scrollOffset > MAXIMUM_SCROLLING_OFFSET) {
+      setIsScrollTopEnabled(true);
+    } else {
+      setIsScrollTopEnabled(false);
+    }
+    Keyboard.dismiss();
+  };
 
   const renderListHeader = useMemo(
     () => (
@@ -99,6 +118,13 @@ const Characters: React.FC<{}> = () => {
     />
   );
 
+  const onPressTopButton = () => {
+    charactersListRef.current?.scrollToOffset({
+      animated: true,
+      offset: 0,
+    });
+  };
+
   const renderEmptyList = useCallback(() => {
     if (loading) {
       return (
@@ -124,8 +150,10 @@ const Characters: React.FC<{}> = () => {
   return (
     <SafeAreaView style={styles.screenContainer}>
       <FlatList
+        ref={charactersListRef}
         data={data?.characters.results}
         renderItem={renderCharacterItem}
+        onScroll={handleOnUserScrollList}
         keyExtractor={(item: Character) => item.id.toString()}
         ListEmptyComponent={renderEmptyList}
         contentContainerStyle={styles.listContentStyles}
@@ -133,11 +161,14 @@ const Characters: React.FC<{}> = () => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         onEndReached={onEndReachedHandler}
-        onEndReachedThreshold={0.2}
+        onEndReachedThreshold={0.5}
         ListFooterComponent={renderListFooter}
         ListHeaderComponent={renderListHeader}
         stickyHeaderIndices={[0]}
       />
+      {isScrollTopEnabled && (
+        <ScrollTopButton onPressScroll={onPressTopButton} />
+      )}
     </SafeAreaView>
   );
 };
