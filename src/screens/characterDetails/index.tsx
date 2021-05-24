@@ -1,4 +1,4 @@
-import {RouteProp, useRoute} from '@react-navigation/core';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/core';
 import React, {useCallback, useEffect} from 'react';
 import {
   ActivityIndicator,
@@ -7,6 +7,7 @@ import {
   Text,
 } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
+import BackHeader from '../../components/backHeader';
 import CharacterDetailsHeader from '../../components/characterDetailsHeader';
 import EpisodesListItem from '../../components/episodesListItem';
 import useCharacter from '../../hooks/useCharacter';
@@ -20,6 +21,8 @@ const CharacterDetails: React.FC = () => {
   } = useRoute<RouteProp<CharacterDetailsNavigationParams, 'Details'>>();
 
   const {getCharacterDetails, loading, data, error} = useCharacter();
+
+  const {goBack} = useNavigation();
 
   useEffect(() => {
     getCharacterDetails({
@@ -63,7 +66,10 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <SafeAreaView style={characterDetailsStyles.screenContainer}>
+      <BackHeader goBack={goBack} />
       <FlatList
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         ListHeaderComponent={renderCharacterSummary}
         data={data?.character.episode}
         ListEmptyComponent={renderEmptyList}
