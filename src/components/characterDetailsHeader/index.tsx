@@ -11,6 +11,7 @@ const CharacterDetailsHeader: React.FC<CharacterDetailsHeaderProps> = (
   return (
     <View key={character.id} style={characterDetailsHeaderStyles.container}>
       <FastImage
+        testID="character-image"
         source={{uri: character.image}}
         style={characterDetailsHeaderStyles.characterImage}
       />
@@ -18,6 +19,7 @@ const CharacterDetailsHeader: React.FC<CharacterDetailsHeaderProps> = (
         <View style={characterDetailsHeaderStyles.characterInfoContainer}>
           <Text style={characterDetailsHeaderStyles.characterInfo}>Name:</Text>
           <Text
+            testID="character-name"
             numberOfLines={1}
             style={characterDetailsHeaderStyles.characterInfo}>
             {character.name}
@@ -28,6 +30,7 @@ const CharacterDetailsHeader: React.FC<CharacterDetailsHeaderProps> = (
             Species:
           </Text>
           <Text
+            testID="character-species"
             numberOfLines={1}
             style={characterDetailsHeaderStyles.characterInfo}>
             {character.species}
@@ -38,6 +41,7 @@ const CharacterDetailsHeader: React.FC<CharacterDetailsHeaderProps> = (
             Gender:
           </Text>
           <Text
+            testID="character-gender"
             numberOfLines={1}
             style={characterDetailsHeaderStyles.characterInfo}>
             {character.gender}
