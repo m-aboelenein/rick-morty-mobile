@@ -7,8 +7,8 @@ const EpisodesListItem: React.FC<EpisodesListItemProps> = (props) => {
   const {episode} = props;
   return (
     <View style={episodeListItemStyles.container}>
-      <Text style={episodeListItemStyles.name}>{episode.name}</Text>
-      <Text style={episodeListItemStyles.airDate}>{episode.air_date}</Text>
+      <Text numberOfLines={1} style={episodeListItemStyles.name}>{episode.name}</Text>
+      <Text numberOfLines={1} style={episodeListItemStyles.airDate}>{episode.air_date}</Text>
     </View>
   );
 };

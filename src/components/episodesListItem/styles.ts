@@ -4,18 +4,22 @@ import {EpisodesListItemStyles} from './types';
 const episodeListItemStyles = StyleSheet.create<EpisodesListItemStyles>({
   container: {
     backgroundColor: 'white',
-    height: 30,
+    height: 40,
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+    borderRadius: 8,
+    margin: 8,
   },
   airDate: {
-    color: 'black',
+    color: 'green',
     fontSize: 14,
   },
   name: {
     color: 'black',
-    fontSize: 14,
+    fontSize: 13,
+    flex: 1,
   },
 });
 
