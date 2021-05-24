@@ -26,22 +26,40 @@ exports[`renders a character item 1`] = `
   }
   testID="character-item"
 >
-  <Image
-    source={
-      Object {
-        "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-      }
-    }
+  <View
     style={
-      Object {
-        "borderRadius": 35,
-        "height": 70,
-        "marginRight": 16,
-        "resizeMode": "cover",
-        "width": 70,
-      }
+      Array [
+        Object {
+          "overflow": "hidden",
+        },
+        Object {
+          "borderRadius": 35,
+          "height": 70,
+          "marginRight": 16,
+          "resizeMode": "cover",
+          "width": 70,
+        },
+      ]
     }
-  />
+  >
+    <FastImageView
+      resizeMode="cover"
+      source={
+        Object {
+          "uri": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+        }
+      }
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
   <Text
     numberOfLines={1}
     style={
